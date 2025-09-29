@@ -688,7 +688,6 @@ class NaiveBatchedExperts(mk.FusedMoEPermuteExpertsUnpermute):
         global_num_experts: int,
         expert_map: Optional[torch.Tensor],
         a1q_scale: Optional[torch.Tensor],
-        a2_scale: Optional[torch.Tensor],
         workspace13: torch.Tensor,
         workspace2: torch.Tensor,
         expert_tokens_meta: Optional[mk.ExpertTokensMetadata],
@@ -880,7 +879,6 @@ class BatchedTritonExperts(mk.FusedMoEPermuteExpertsUnpermute):
         global_num_experts: int,
         expert_map: Optional[torch.Tensor],
         a1q_scale: Optional[torch.Tensor],
-        a2_scale: Optional[torch.Tensor],
         workspace13: torch.Tensor,
         workspace2: torch.Tensor,
         expert_tokens_meta: Optional[mk.ExpertTokensMetadata],
@@ -972,7 +970,7 @@ class BatchedTritonExperts(mk.FusedMoEPermuteExpertsUnpermute):
                         intermediate_cache1.view(-1, N))
 
         qintermediate_cache2, a2q_scale = batched_moe_kernel_quantize_input(
-            intermediate_cache2, a2_scale, max_num_tokens, E, N,
+            intermediate_cache2, self.a2_scale, max_num_tokens, E, N,
             expert_num_tokens, self.quant_dtype, self.per_act_token_quant,
             self.block_shape)
 

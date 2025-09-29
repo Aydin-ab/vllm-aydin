@@ -224,13 +224,8 @@ class GDNAttentionMetadataBuilder(
         # min(n, cudagraph_max_bs).
         if (self.use_full_cuda_graph and num_prefills == 0 and num_decodes == 0
                 and num_spec_decodes <= self.decode_cudagraph_max_bs
-<<<<<<< HEAD
-                and m.num_actual_tokens <= self.decode_cudagraph_max_bs):
-            num_total_tokens = self.vllm_config.pad_for_cudagraph(
-=======
                 and num_spec_decode_tokens <= self.decode_cudagraph_max_bs):
             num_actual_tokens = self.vllm_config.pad_for_cudagraph(
->>>>>>> origin/bench-cli-ray-fix
                 m.num_actual_tokens)
             batch_size = min(self.decode_cudagraph_max_bs, num_actual_tokens)
 
