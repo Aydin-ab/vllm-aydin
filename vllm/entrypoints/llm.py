@@ -724,6 +724,10 @@ class LLM:
         self,
         messages: Union[list[ChatCompletionMessageParam],
                         list[list[ChatCompletionMessageParam]]],
+<<<<<<< HEAD
+        lora_request: Optional[LoRARequest] = None,
+=======
+>>>>>>> origin/bench-cli-ray-fix
         chat_template: Optional[str] = None,
         chat_template_content_format: ChatTemplateContentFormatOption = "auto",
         add_generation_prompt: bool = True,
@@ -755,7 +759,11 @@ class LLM:
                 cast(list[ChatCompletionMessageParam], messages)
             ]
 
+<<<<<<< HEAD
+        tokenizer = self.get_tokenizer(lora_request)
+=======
         tokenizer = self.get_tokenizer()
+>>>>>>> origin/bench-cli-ray-fix
         model_config = self.llm_engine.get_model_config()
         resolved_content_format = resolve_chat_template_content_format(
             chat_template,
@@ -888,6 +896,10 @@ class LLM:
 
         prompts = self.preprocess_chat(
             messages=messages,
+<<<<<<< HEAD
+            lora_request=lora_request,
+=======
+>>>>>>> origin/bench-cli-ray-fix
             chat_template=chat_template,
             chat_template_content_format=chat_template_content_format,
             add_generation_prompt=add_generation_prompt,
